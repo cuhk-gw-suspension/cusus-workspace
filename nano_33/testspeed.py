@@ -22,4 +22,4 @@ with serial.Serial(get_nano_port(), 2000000, timeout=1) as ser:
         old = new
         i += 1
 print("-------------------")
-print("averaged interval: ", temp/float(i), "ns")
+print("average receive interval: ", temp/float(i), "ns")
