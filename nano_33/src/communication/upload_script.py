@@ -1,6 +1,6 @@
 import subprocess
 import os
-from .adaptOS import get_nano_port
+from .adaptUSBport import get_nano_port
 
 def upload(file_path, port=get_nano_port(), timeout=60):
     '''function to upload .ino script to chip within python

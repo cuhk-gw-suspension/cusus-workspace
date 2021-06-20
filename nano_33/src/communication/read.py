@@ -2,7 +2,7 @@ import serial
 import time
 import os
 import traceback
-from .adaptOS import get_nano_port
+from .adaptUSBport import get_nano_port
 
 def export_measurements(
         elapsed_time, 

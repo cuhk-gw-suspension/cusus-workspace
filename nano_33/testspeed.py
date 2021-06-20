@@ -1,5 +1,5 @@
 import serial
-from src.communication.adaptOS import get_nano_port
+from src.communication.adaptUSBport import get_nano_port
 from src.communication.upload_script import upload
 import time
 import os
