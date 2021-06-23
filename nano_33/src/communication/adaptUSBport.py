@@ -6,13 +6,13 @@ def get_nano_port():
     arduino_ports = [
             p.device
             for p in serial.tools.list_ports.comports()
-            if 'Nano' in p.description
+            if 'Nano 33' in p.description
     ]
 
     if not arduino_ports:
         raise IOError("No Arduino found")
     if len(arduino_ports) > 1:
-        warnings.warn("Multiple Arduinos found - returning the first")
+        warnings.warn("Multiple Nano 33 ble found - returning the first")
 
     return arduino_ports[0]
 
