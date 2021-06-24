@@ -6,7 +6,7 @@ def get_nano_port():
     arduino_ports = [
             p.device
             for p in serial.tools.list_ports.comports()
-            if 'Nano 33' in p.description
+            if 'BLE' in p.description
     ]
 
     if not arduino_ports:

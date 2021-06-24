@@ -24,7 +24,7 @@ int degreesZ = 0;
 unsigned long NewTime, OldTime, exact;
 
 void setup() {
-  Serial.begin(2000000);
+  Serial.begin(1000000);
 
   if (!IMU.begin(0)) // 0:2g, 1:4g, 2:8g, 3:16g, at 952Hz
   { 
