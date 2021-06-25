@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/lamyc627/Documents/cusus-workspace/	//
+!_TAG_PROC_CWD	/home/lamyc627/code/cusus-workspace/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -56,6 +56,7 @@ readMagneticField	nano_33/nano_script/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS
 readRegister	nano_33/nano_script/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readRegister(uint8_t slaveAddress, uint8_t address)$/;"	f	class:LSM9DS1Class	typeref:typename:int
 readRegisters	nano_33/nano_script/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readRegisters(uint8_t slaveAddress, uint8_t address, uint8_t* data, size_t len/;"	f	class:LSM9DS1Class	typeref:typename:int
 script_path	nano_33/logdata.py	/^script_path = os.path.join("nano_script", "ReadAccelerometer", "ReadAccelerometer.ino")$/;"	v
+script_path	nano_33/testspeed.py	/^script_path = os.path.join("nano_script", "ReadAccelerometer", "ReadAccelerometer.ino")$/;"	v
 setContinuousMode	nano_33/nano_script/ReadAccelerometer/LSM9DS1.cpp	/^void LSM9DS1Class::setContinuousMode() {$/;"	f	class:LSM9DS1Class	typeref:typename:void
 setOneShotMode	nano_33/nano_script/ReadAccelerometer/LSM9DS1.cpp	/^void LSM9DS1Class::setOneShotMode() {$/;"	f	class:LSM9DS1Class	typeref:typename:void
 start	nano_33/testspeed.py	/^start = time.perf_counter()$/;"	v
