@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # vim undo and swap files
-*.*~
+.*.un~
 *.*.sw?
 
 # jupyter notebook
