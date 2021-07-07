@@ -2,7 +2,7 @@ import serial
 import time
 import os
 import traceback
-from .adaptOS import get_nano_port
+from .adaptUSBport import get_nano_port
 
 def export_measurements(
         elapsed_time, 
@@ -81,6 +81,6 @@ def monitor(port_path=get_nano_port(), baud=2_000_000, timeout=1):
 
 
 if __name__=="__main__":
-    export_measurements(60*60, "measurements", "119Hz_2g.csv")
-    # monitor("/dev/ttyS4")
+    # export_measurements(60*60, "measurements", "119Hz_2g.csv")
+    monitor()
     pass

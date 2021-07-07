@@ -1,6 +1,6 @@
 import subprocess
 import os
-from .adaptOS import get_nano_port
+from .adaptUSBport import get_nano_port
 
 def upload(file_path, port=get_nano_port(), timeout=60):
     '''function to upload .ino script to chip within python
@@ -15,7 +15,7 @@ def upload(file_path, port=get_nano_port(), timeout=60):
             timeout in seconds, default is 60.
     '''
 
-    ret = subprocess.run(["arduino", "--upload", "--port", port, file_path],
+    ret = subprocess.run(["arduino", "--port", port, "--upload", file_path],
                          shell=False,
                          encoding="utf-8",
                          timeout=timeout)
