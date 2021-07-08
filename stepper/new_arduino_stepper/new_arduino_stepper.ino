@@ -15,7 +15,7 @@ void setup() {
 void loop() {
     // put your main code here, to run repeatedly:
     if (stepper1.distanceToGo() == 0)
-        stepper1.moveTo(stepper1.getPosition());    
+        stepper1.moveTo(-stepper1.getPosition());    
     stepper1.run();
 }
 
