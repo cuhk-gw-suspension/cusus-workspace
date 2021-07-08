@@ -2,7 +2,7 @@
 
 // Define a stepper and the pins it will use
 AccelStepper stepper1(AccelStepper::DRIVER, 2, 3); //Driver mode, pul: pin2, dir: pin3 
-// Defaults of  AccelStepper::FULL4WIRE (4 pins) on 2, 3, 4, 5
+// Defaults of AccelStepper::FULL4WIRE (4 pins) on 2, 3, 4, 5
 
 int steps_per_revolution = 25600;
 
