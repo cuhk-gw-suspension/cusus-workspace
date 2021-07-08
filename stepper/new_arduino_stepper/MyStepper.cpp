@@ -1,6 +1,6 @@
-include "MyStepper.h"
+#include "MyStepper.h"
 
-Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin, bool enable = true){
+Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin, bool enable){
     _pul_pin = pul_pin;
     _dir_pin = dir_pin;
     _enable = enable;
@@ -39,11 +39,11 @@ void Stepper::step(){
     setOutputPins(2, LOW);
 }
 
-inline long Stepper::getPosition(){
+long Stepper::getPosition(){
     return _currentPos;
 }
 
-inline long distanceToGo(){
+long Stepper::distanceToGo(){
     return _targetPos - _currentPos;
 }
 
