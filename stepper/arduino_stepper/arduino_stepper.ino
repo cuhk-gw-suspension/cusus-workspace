@@ -1,4 +1,5 @@
-#include "MyAccelStepper.h"
+#include <stdlib.h>
+#include <Arduino.h>
 
 // Define a stepper and the pins it will use
 AccelStepper stepper1(AccelStepper::DRIVER, 2, 3); //Driver mode, pul: pin2, dir: pin3 
@@ -11,10 +12,10 @@ void setup()
   DDRD |= B11111100;
   
   // Change these to suit your stepper if you want
-  stepper1.setMaxSpeed(steps_per_revolution*3.0);
+  stepper1.setMaxSpeed(steps_per_revolution*10.0);
   stepper1.setAcceleration(steps_per_revolution*5.0);
   stepper1.moveTo((long)steps_per_revolution*9);
-  stepper1.setMinPulseWidth(5);
+  stepper1.setMinPulseWidth(1);
 }
 
 void loop()
