@@ -19,30 +19,34 @@ void loop() {
 }
 
 void initOutputPins(uint8_t pin) {  
-    if (pin > 7 && pin pin < 14):
+    if (pin > 7 && pin < 14)
     {
         pin -= 8;
         DDRB |= (1 << pin); // initilize pin
-        break;
     }
-
-    DDRD |= (1 << pin); // initialize pin 
+    else
+        DDRD |= (1 << pin); // initialize pin 
 
 
 }
 
 void setOutputPins(uint8_t pin, bool state){
     // set outputPin as HIGH or LOW.
-    switch(pin)
+    char _data_sector;
+    if (pin < 8)
+        _data_sector = 'D';
+    if (pin < 14)
+        _data_sector = 'B';
+    switch(_data_sector)
     {
-    case (pin >=0 && pin <= 7):
+    case 'D':
         if (state)
             PORTD |= (1 << pin);
         else
             PORTD &= ~(1 << pin);
         break;
 
-    case (pin > 7 && pin < 14):
+    case 'B':
         pin -= 8;
         if (state)
             PORTB |= (1 << pin);
