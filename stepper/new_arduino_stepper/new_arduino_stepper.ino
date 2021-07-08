@@ -6,16 +6,29 @@
 
 void setup() {
   // put your setup code here, to run once:
-    DDRD = DDRD | B11111100; //initialize pin 2 to 7 as output pin, leaving pin0, 1 (tx, rx)
     
-  
-  
+    for (int i = 2; i < 4; i++)
+        initOutputPins(i); 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-    setOutputPins
+    setOutputPins(2, HIGH);
     delayMicroseconds(5);
+    setOutputPins(2, LOW);
+}
+
+void initOutputPins(uint8_t pin) {  
+    if (pin > 7 && pin pin < 14):
+    {
+        pin -= 8
+        DDRB |= (1 << pin); // initilize pin
+        break;
+    }
+
+    DDRD |= (1 << pin); // initialize pin 
+
+
 }
 
 void setOutputPins(uint8_t pin, bool state){
