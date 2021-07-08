@@ -12,7 +12,6 @@
 AccelStepper	arduino_stepper/AccelStepper.cpp	/^AccelStepper::AccelStepper(uint8_t interface, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t /;"	f	class:AccelStepper
 AccelStepper	arduino_stepper/AccelStepper.cpp	/^AccelStepper::AccelStepper(void (*forward)(), void (*backward)())$/;"	f	class:AccelStepper
 AccelStepper	arduino_stepper/MyAccelStepper.h	/^class AccelStepper$/;"	c
-AccelStepper_h	arduino_stepper/MyAccelStepper.h	/^#define AccelStepper_h$/;"	d
 DIRECTION_CCW	arduino_stepper/MyAccelStepper.h	/^	DIRECTION_CCW = 0,  \/\/\/< Counter-Clockwise$/;"	e	enum:AccelStepper::__anon1fb8c97f0203
 DIRECTION_CW	arduino_stepper/MyAccelStepper.h	/^        DIRECTION_CW  = 1   \/\/\/< Clockwise$/;"	e	enum:AccelStepper::__anon1fb8c97f0203
 DRIVER	arduino_stepper/MyAccelStepper.h	/^	DRIVER    = 1, \/\/\/< Stepper Driver, 2 driver pins required$/;"	e	enum:AccelStepper::__anon1fb8c97f0103
@@ -28,6 +27,7 @@ MotorInterfaceType	arduino_stepper/MyAccelStepper.h	/^    } MotorInterfaceType;$
 MultiStepper	arduino_stepper/MultiStepper.cpp	/^MultiStepper::MultiStepper()$/;"	f	class:MultiStepper
 MultiStepper	arduino_stepper/MultiStepper.h	/^class MultiStepper$/;"	c
 MultiStepper_h	arduino_stepper/MultiStepper.h	/^#define MultiStepper_h$/;"	d
+MyAccelStepper_h	arduino_stepper/MyAccelStepper.h	/^#define MyAccelStepper_h$/;"	d
 YIELD	arduino_stepper/MyAccelStepper.h	/^ #define YIELD /;"	d
 YIELD	arduino_stepper/MyAccelStepper.h	/^ #define YIELD$/;"	d
 __anon1fb8c97f0103	arduino_stepper/MyAccelStepper.h	/^    {$/;"	g	class:AccelStepper
@@ -62,6 +62,7 @@ disableOutputs	arduino_stepper/AccelStepper.cpp	/^void    AccelStepper::disableO
 distanceToGo	arduino_stepper/AccelStepper.cpp	/^long AccelStepper::distanceToGo()$/;"	f	class:AccelStepper	typeref:typename:long
 enableOutputs	arduino_stepper/AccelStepper.cpp	/^void    AccelStepper::enableOutputs()$/;"	f	class:AccelStepper	typeref:typename:void
 isRunning	arduino_stepper/AccelStepper.cpp	/^bool AccelStepper::isRunning()$/;"	f	class:AccelStepper	typeref:typename:bool
+main	test.cpp	/^int main() {$/;"	f	typeref:typename:int
 maxSpeed	arduino_stepper/AccelStepper.cpp	/^float   AccelStepper::maxSpeed()$/;"	f	class:AccelStepper	typeref:typename:float
 move	arduino_stepper/AccelStepper.cpp	/^void AccelStepper::move(long relative)$/;"	f	class:AccelStepper	typeref:typename:void
 moveTo	arduino_stepper/AccelStepper.cpp	/^void AccelStepper::moveTo(long absolute)$/;"	f	class:AccelStepper	typeref:typename:void
