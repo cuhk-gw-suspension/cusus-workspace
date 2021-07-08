@@ -21,7 +21,7 @@ void loop() {
 void initOutputPins(uint8_t pin) {  
     if (pin > 7 && pin pin < 14):
     {
-        pin -= 8
+        pin -= 8;
         DDRB |= (1 << pin); // initilize pin
         break;
     }
@@ -43,7 +43,7 @@ void setOutputPins(uint8_t pin, bool state){
         break;
 
     case (pin > 7 && pin < 14):
-        pin -= 8
+        pin -= 8;
         if (state)
             PORTB |= (1 << pin);
         else
