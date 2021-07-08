@@ -42,7 +42,7 @@ void setOutputPins(uint8_t pin, bool state){
             PORTD &= ~(1 << pin);
         break;
 
-    case (pin > 7 && pin pin < 14):
+    case (pin > 7 && pin < 14):
         pin -= 8
         if (state)
             PORTB |= (1 << pin);
