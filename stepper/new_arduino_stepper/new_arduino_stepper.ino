@@ -2,7 +2,8 @@
 
 */
 
-
+int step_per_rev = 25600;
+int count = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -13,45 +14,62 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+}
+
+void moveTo(){
+
+}
+
+bool run(){
     setOutputPins(2, HIGH);
-    delayMicroseconds(5);
+    delayMicroseconds(5); // need to replace by other delay method
     setOutputPins(2, LOW);
 }
 
-void initOutputPins(uint8_t pin) {  
-    if (pin > 7 && pin < 14)
-    {
-        pin -= 8;
-        DDRB |= (1 << pin); // initilize pin
-    }
-    else
-        DDRD |= (1 << pin); // initialize pin 
+char _locate_pin_sector(uint8_t pin){ 
+    if (pin < 8)
+        return 'D';
+    else if (pin < 14)
+        return 'B';
 
-
+    return false;
 }
 
-void setOutputPins(uint8_t pin, bool state){
-    // set outputPin as HIGH or LOW.
-    char _data_sector;
-    if (pin < 8)
-        _data_sector = 'D';
-    if (pin < 14)
-        _data_sector = 'B';
-    switch(_data_sector)
+void initOutputPins(uint8_t pin) {
+    volatile uint8_t *addrToDataDirectionRegister;
+    switch(_locate_pin_sector(pin))
     {
     case 'D':
-        if (state)
-            PORTD |= (1 << pin);
-        else
-            PORTD &= ~(1 << pin);
+        addrToDataDirectionRegister = &DDRD;
         break;
 
     case 'B':
         pin -= 8;
-        if (state)
-            PORTB |= (1 << pin);
-        else
-            PORTB &= ~(1 << pin);
+        addrToDataDirectionRegister = &DDRB;
         break;
     }
+    
+    *addrToDataDirectionRegister |= (1 << pin); // initialize pin 
+}
+
+void setOutputPins(uint8_t pin, bool state){
+    // set outputPin as HIGH or LOW.
+    volatile uint8_t *addrToDataRegister;
+
+    switch(_locate_pin_sector(pin))
+    {
+    case 'D':
+        addrToDataRegister = &PORTD;
+        break;
+
+    case 'B':
+        pin -= 8;
+        addrToDataRegister = &PORTB;
+        break;
+    }
+
+    if (state)
+        *addrToDataRegister |= (1 << pin);
+    else
+        *addrToDataRegister &= ~(1 << pin);
 }
