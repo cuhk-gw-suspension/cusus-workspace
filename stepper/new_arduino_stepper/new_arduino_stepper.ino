@@ -3,24 +3,33 @@
 */
 
 int step_per_rev = 25600;
-int count = 0;
+int currentPos = 0;
 
 void setup() {
   // put your setup code here, to run once:
     
     for (int i = 2; i < 4; i++)
-        initOutputPins(i); 
+        initOutputPins(i);
+    setOutputPins(3, HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+    if (currentPos <= step_per_rev*3){
+        run();
+        currentPos += 1;
+    }
+    else{
+        currentPos = 0;
+        setOutputPins(3, LOW);
+    }
 }
 
 void moveTo(){
-
+    
 }
 
-bool run(){
+void run(){
     setOutputPins(2, HIGH);
     delayMicroseconds(5); // need to replace by other delay method
     setOutputPins(2, LOW);
@@ -31,8 +40,6 @@ char _locate_pin_sector(uint8_t pin){
         return 'D';
     else if (pin < 14)
         return 'B';
-
-    return false;
 }
 
 void initOutputPins(uint8_t pin) {
@@ -69,7 +76,10 @@ void setOutputPins(uint8_t pin, bool state){
     }
 
     if (state)
-        *addrToDataRegister |= (1 << pin);
+        *addrToDataRegister |= (1 << pin); // wrtie HIGH to the pin
     else
-        *addrToDataRegister &= ~(1 << pin);
+        *addrToDataRegister &= ~(1 << pin); // write LOW to the pin
 }
+
+
+
