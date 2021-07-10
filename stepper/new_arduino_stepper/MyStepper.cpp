@@ -10,11 +10,13 @@ Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin, bool enable){
 
     initOutputPins(_pul_pin);
     initOutputPins(_dir_pin);
+
+    setOutputPins(pul_pin, LOW);
 }
 
 void Stepper::moveTo(long absolute){
     _targetPos = absolute;
-    int displacement = _targetPos - _currentPos;
+    long displacement = _targetPos - _currentPos;
     if (displacement > 0)
         setDirection(HIGH);
     else if (displacement < 0)
@@ -26,16 +28,23 @@ void Stepper::setDirection(bool direction){
     setOutputPins(_dir_pin, _direction);
 }
 
-void Stepper::run(){
+void Stepper::run(unsigned int pulsewidth){
     if (_currentPos != _targetPos){
-        step();
+        step(pulsewidth);
         _currentPos += _direction ? 1 : -1;
     }
 }
 
-void Stepper::step(){
+void Stepper::step(unsigned int pulsewidth){
+    /* static unsigned long target = micros() + (uint32_t) pulsewidth; */
     setOutputPins(2, HIGH);
-    delayMicroseconds(2); // need to replace by other delay method
+    
+    // need to replace by other delay method
+    // claims to be accurate 3 us and up
+    delayMicroseconds(pulsewidth); 
+    
+    /* while (micros() < target) {} */
+    
     setOutputPins(2, LOW);
 }
 
