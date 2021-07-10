@@ -37,7 +37,11 @@ public:
     // return current absolute position
     long getPosition();
 
+    // return displacement between current position and target position
     long distanceToGo();
+
+    // set current position as pos in absolute position
+    void setPosition(long pos);
 
 private:
     // locate which data register sector the pin is on. 'B' or 'D'.

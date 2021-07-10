@@ -56,6 +56,10 @@ long Stepper::distanceToGo(){
     return _targetPos - _currentPos;
 }
 
+void Stepper::setPosition(long pos){
+    _currentPos = pos; 
+}
+
 char Stepper::locatePinSector(uint8_t pin){ 
     if (pin < 8)
         return 'D';
