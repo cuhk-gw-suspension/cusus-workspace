@@ -1,5 +1,5 @@
-#ifndef MyStpper_h
-    #define MyStpper_h
+#ifndef MyStepper_h
+    #define MyStepper_h
 
 #include <stdlib.h>
 #if ARDUINO >= 100
@@ -29,10 +29,10 @@ public:
     void setDirection(bool direction);
 
     // function to call in the arduino loop
-    void run();
+    void run(unsigned int pulsewidth);
 
     // move one step
-    void step();
+    void step(unsigned int pulsewidth);
 
     // return current absolute position
     long getPosition();
