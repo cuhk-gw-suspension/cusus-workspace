@@ -35,7 +35,7 @@ void Stepper::run(){
 
 void Stepper::step(){
     setOutputPins(2, HIGH);
-    delayMicroseconds(5); // need to replace by other delay method
+    delayMicroseconds(2); // need to replace by other delay method
     setOutputPins(2, LOW);
 }
 
