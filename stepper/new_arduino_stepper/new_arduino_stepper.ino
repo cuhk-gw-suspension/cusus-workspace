@@ -1,11 +1,6 @@
 #include "MyStepper.h"
 #include "MyParseNumber.h"
 
-/* unsigned long parseStart; */
-/* unsigned long parsetime; */
-/* unsigned long printStart; */
-/* unsigned long printTime; */
-
 long incomingBytes;
 long length;
 unsigned int count = 0;
@@ -26,44 +21,37 @@ bool readPin(uint8_t pin){
     switch (sector)
     {
     case 'D':
-        return PIND && (1 << pin);
+        return ((PIND & (1 << pin)) >> pin);
     case 'B':
         pin -= 8;
-        return PINB && (1 << pin);
+        return ((PINB & (1 << pin)) >> pin);
     }
 
 }
 
-void sweep(Stepper stepper, uint8_t pin1, uint8_t pin2, long *len){ 
-    char sector;
-    if (pin < 8)
-        sector = 'D';
-    else if (pin < 14)
-        sector = 'B';
+void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *len){ 
+    pinMode(pin1, INPUT_PULLUP);
+    pinMode(pin2, INPUT_PULLUP);
 
-    switch (sector)
-    {
-    case 'D':
-        DDRD &= ~(1 << pin);
-        break;
-    case 'B':
-        pin -= 8;
-        DDRB &= ~(1 << pin);
-        break
-    }
-
-    stepper.setDirection(LOW); 
+    stepper->setDirection(LOW); 
     while(readPin(pin1) && readPin(pin2))
-        stepper.step(3);
-    stepper.setPosition(0); // set one boundary as 0 position.
-
-    stepper.setDirection(HIGH);
-    while(readPin(pin1) && readPin(pin2))
-        stepper.step(3);
+        stepper->step(3);
+    stepper->setPosition(0); // set one boundary as 0 position.
     
-    *len = stepper.getPosition();
-    stepper.setPosition(length/2); // set centre as 0 position.
-    stepper.moveTo(0);
+    uint8_t otherPin;
+
+    if (readPin(pin1))
+        otherPin = pin1;
+    else if (readPin(pin2))
+        otherPin = pin2;
+
+    stepper->setDirection(HIGH);
+    while(readPin(otherPin))
+        stepper->step(3);
+    
+    *len = stepper->getPosition();
+    stepper->setPosition(length/2); // set centre as 0 position.
+    stepper->moveTo(0);
 }
 
 void setup() {
@@ -72,7 +60,7 @@ void setup() {
 
     // centre the table. 
     // button at bound must be LOW when pressed, HIGH otherwise.
-    sweep(stepper1, left_pin, right_pin, &length);
+    sweep(&stepper1, left_pin, right_pin, &length);
 }
 
 void loop() {
@@ -88,24 +76,5 @@ void loop() {
         stepper1.run(3); // caution, delay under 3 is inaccurate.
     
     count += 1;
-
-
-    // test serial r,w code
-    /* if (Serial.available() > 0) */
-    /* { */
-    /*     parseStart = micros(); */
-    /*     /1* incomingBytes = Serial.parseInt(); //takes about 15000 microsec *1/ */
-    /*     incomingBytes = myParseInt(); */
-    /*     parsetime = micros() - parseStart; */
-
-    /*     printStart = micros(); */
-    /*     Serial.println(incomingBytes); // takes about 500 microsec */
-    /*     printTime = micros() - printStart; */
-
-    /*     Serial.print(parsetime); */
-    /*     Serial.print("\t"); */
-    /*     Serial.println(printTime); */
-    /* } */
-
 }
 

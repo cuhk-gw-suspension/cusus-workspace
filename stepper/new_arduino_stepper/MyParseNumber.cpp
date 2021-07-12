@@ -11,11 +11,12 @@ long myParseInt()
   bool isNegative = (c=='-');
   if(isNegative) {c = Serial.read();}
 
-  while( isdigit(c)) { 
-    value = (value * 10) + (c - '0');
+  while (c != '\n'){
+    if (isdigit(c)) { 
+        value = (value * 10) + (c - '0');
+    }
     c = Serial.read();
   }
-
   if(isNegative) value = -value;
   return value;
 }
