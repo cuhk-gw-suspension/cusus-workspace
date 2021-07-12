@@ -3,11 +3,13 @@
 
 long incomingBytes;
 long length;
-unsigned int count = 0;
+unsigned long time_now, time_old;
 
 // pins that denote the table have reached boundary
-uint8_t left_pin = 12;
-uint8_t right_pin = 11;
+const uint8_t left_pin = 12;
+const uint8_t right_pin = 11;
+
+const int dt = 10000; // interval between sample, in microsec.
 
 Stepper stepper1(2, 3); //init pul pin=2, dir pin=3
 
@@ -29,7 +31,7 @@ bool readPin(uint8_t pin){
 
 }
 
-void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *len){ 
+void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2){ 
     pinMode(pin1, INPUT_PULLUP);
     pinMode(pin2, INPUT_PULLUP);
 
@@ -45,13 +47,19 @@ void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *len){
     else if (readPin(pin2))
         otherPin = pin2;
 
+    long length = 0;
     stepper->setDirection(HIGH);
-    while(readPin(otherPin))
+    while(readPin(otherPin)){
         stepper->step(3);
+        length += 1;
+    }
     
-    *len = stepper->getPosition();
     stepper->setPosition(length/2); // set centre as 0 position.
     stepper->moveTo(0);
+    while (stepper->distanceToGo() != 0){
+        if (readPin(pin1) && readPin(pin2))
+            stepper->run(3);
+    }
 }
 
 void setup() {
@@ -60,21 +68,21 @@ void setup() {
 
     // centre the table. 
     // button at bound must be LOW when pressed, HIGH otherwise.
-    sweep(&stepper1, left_pin, right_pin, &length);
+    sweep(&stepper1, left_pin, right_pin);
+    time_old = micros();
 }
 
 void loop() {
     // put your main code here, to run repeatedly:
 
     // actual code
-    if (count%10==0 && Serial.available() > 0){
+    time_now = micros();
+    if (time_now - time_old >= dt && Serial.available() > 0){
         incomingBytes = myParseInt();
         stepper1.moveTo(incomingBytes);
-        count = 0;
+        time_old = time_now;
     }
     if (readPin(left_pin) && readPin(right_pin))
-        stepper1.run(3); // caution, delay under 3 is inaccurate.
-    
-    count += 1;
+        stepper1.run(3); // caution, delay under 3 is inaccurate. 
 }
 
