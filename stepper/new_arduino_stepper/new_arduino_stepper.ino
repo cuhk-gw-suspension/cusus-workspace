@@ -72,7 +72,7 @@ void loop() {
         stepper1.moveTo(incomingBytes);
         count = 0;
     }
-    if (readPin(pin1) && readPin(pin2))
+    if (readPin(left_pin) && readPin(right_pin))
         stepper1.run(3); // caution, delay under 3 is inaccurate.
     
     count += 1;
