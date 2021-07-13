@@ -10,7 +10,7 @@ series = 2*25600*np.sin(t)
 series = series.astype(int).astype(str)
 
 
-with serial.Serial(port="/dev/ttyUSB0", baud=500000, timeout=5) as ser:
+with serial.Serial(port="/dev/ttyUSB0", baudrate=500000, timeout=5) as ser:
     time_old = time.perf_counter_ns()
 
     for i in range(len(t)):
