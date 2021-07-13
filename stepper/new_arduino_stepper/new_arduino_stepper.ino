@@ -2,12 +2,12 @@
 #include "MyParseNumber.h"
 
 long incomingBytes;
-long length;
+/* long length; */
 unsigned int count = 0;
 
 // pins that denote the table have reached boundary
 uint8_t left_pin = 12;
-uint8_t right_pin = 11;
+uint8_t right_pin = 10;
 
 Stepper stepper1(2, 3); //init pul pin=2, dir pin=3
 
@@ -29,7 +29,7 @@ bool readPin(uint8_t pin){
 
 }
 
-void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *len){ 
+void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2){ 
     pinMode(pin1, INPUT_PULLUP);
     pinMode(pin2, INPUT_PULLUP);
 
@@ -44,14 +44,19 @@ void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *len){
         otherPin = pin1;
     else if (readPin(pin2))
         otherPin = pin2;
-
-    stepper->setDirection(HIGH);
-    while(readPin(otherPin))
-        stepper->step(3);
     
-    *len = stepper->getPosition();
-    stepper->setPosition(length/2); // set centre as 0 position.
+    long len = 0;
+    stepper->setDirection(HIGH);
+    while(readPin(otherPin)){
+        stepper->step(3);
+        len += 1;
+    }
+    Serial.println(len/2);
+    stepper->setPosition(len/2); // set centre as 0 position.
     stepper->moveTo(0);
+    Serial.println(stepper->distanceToGo());
+    while (stepper->distanceToGo() != 0)
+        stepper->run(3);
 }
 
 void setup() {
@@ -60,7 +65,7 @@ void setup() {
 
     // centre the table. 
     // button at bound must be LOW when pressed, HIGH otherwise.
-    sweep(&stepper1, left_pin, right_pin, &length);
+    sweep(&stepper1, left_pin, right_pin);
 }
 
 void loop() {
