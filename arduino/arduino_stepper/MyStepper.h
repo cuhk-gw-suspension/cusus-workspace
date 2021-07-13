@@ -20,13 +20,21 @@
 class Stepper{
 public:
     //default Stepper object, 
-    Stepper(uint8_t pul_pin = 2, uint8_t dir_pin = 3, bool enable = true);
+    Stepper(uint8_t pul_pin = 2, uint8_t dir_pin = 3);
      
+    // sweep the track and centre the table. 
+    // pin1, pin2 are pin of the limit switches at boundaries.
+    // LOW indicates trigger of the switch. (PULLUP mode)
+    void sweep(uint8_t pin1, uint8_t pin2);
+
     // setting the target position in terms of absolute position
     void moveTo(long absolute);
     
     // set the direction of stepper moving, true=HIGH, false=LOW
     void setDirection(bool direction);
+
+    // set number of steps stepper take per sec.
+    /* void setSpeed( ); */
 
     // function to call in the arduino loop
     void run(unsigned int pulsewidth);
@@ -52,17 +60,22 @@ private:
     
     // set provide pin as HIGH or LOW
     void setOutputPins(uint8_t pin, bool state);
+
+    // read the Pin state, HIGH or LOW.
+    bool readPin(uint8_t pin);
     
 protected:
     // current position in terms of absolute position
-    long _currentPos;
+    volatile long _currentPos;
 
     // target position in terms of absolute position
-    long _targetPos;
+    volatile long _targetPos;
+
+    long _max_dist_from_0;
+    bool _bound_set = false;
 
     uint8_t _pul_pin;
     uint8_t _dir_pin;
-    bool _enable;
 
     // current direction, true = HIGH, false = LOW
     bool _direction;

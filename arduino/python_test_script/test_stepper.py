@@ -6,7 +6,7 @@ freq = 100 # Hz
 
 dt = 1e9/freq # in ns.
 t = np.linspace(0, 100, freq*100+1)
-series = 2*25600*np.sin(2*np.pi*0.1*t)
+series = 2560*np.sin(2*np.pi*t)
 series = series.astype(int).astype(str)
 
 

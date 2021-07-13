@@ -1,9 +1,8 @@
 #include "MyStepper.h"
 
-Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin, bool enable){
+Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin){
     _pul_pin = pul_pin;
     _dir_pin = dir_pin;
-    _enable = enable;
     
     _currentPos = 0;
     _direction = 0;
@@ -12,6 +11,45 @@ Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin, bool enable){
     initOutputPins(_dir_pin);
 
     setOutputPins(pul_pin, LOW);
+}
+
+void Stepper::sweep(uint8_t pin1, uint8_t pin2){
+    pinMode(pin1, INPUT_PULLUP);
+    pinMode(pin2, INPUT_PULLUP);
+
+    setDirection(LOW); 
+    while(readPin(pin1) && readPin(pin2)){
+        delayMicroseconds(100);
+        step(3);
+    }
+    setPosition(0); // set one boundary as 0 position.
+    delay(500);
+    uint8_t *otherPin;
+
+    if (readPin(pin1))
+        otherPin = &pin1;
+    else if (readPin(pin2))
+        otherPin = &pin2;
+
+    setDirection(HIGH);
+    _max_dist_from_0 = 0;
+    while(readPin(*otherPin)){
+        delayMicroseconds(100);
+        step(3);
+        _max_dist_from_0 += 1;
+    }
+    _max_dist_from_0 /= 2;
+    
+    setPosition(_max_dist_from_0); // set centre as 0 position.
+    moveTo(0);
+    while (distanceToGo() != 0){
+        if (readPin(pin1) && readPin(pin2)){
+            delayMicroseconds(100);
+            run(3);
+        }
+    }
+
+    _bound_set = true;
 }
 
 void Stepper::moveTo(long absolute){
@@ -30,20 +68,20 @@ void Stepper::setDirection(bool direction){
 
 void Stepper::run(unsigned int pulsewidth){
     if (_currentPos != _targetPos){
+        if (_bound_set && abs(_currentPos) <= _max_dist_from_0)
+            return;
+
         step(pulsewidth);
         _currentPos += _direction ? 1 : -1;
     }
 }
 
 void Stepper::step(unsigned int pulsewidth){
-    /* static unsigned long target = micros() + (uint32_t) pulsewidth; */
     setOutputPins(2, HIGH);
     
     // need to replace by other delay method
     // claims to be accurate 3 us and up
     delayMicroseconds(pulsewidth); 
-    
-    /* while (micros() < target) {} */
     
     setOutputPins(2, LOW);
 }
@@ -107,4 +145,18 @@ void Stepper::setOutputPins(uint8_t pin, bool state){
 }
 
 
+bool Stepper::readPin(uint8_t pin){
+    char sector;
+    if (pin < 8)  sector = 'D';
+    else if (pin < 14)  sector = 'B';
+
+    switch (sector)
+    {
+    case 'D':
+        return ((PIND & (1 << pin)) >> pin);
+    case 'B':
+        pin -= 8;
+        return ((PINB & (1 << pin)) >> pin);
+    }
+}
 
