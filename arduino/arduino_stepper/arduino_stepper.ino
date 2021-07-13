@@ -2,7 +2,7 @@
 #include "MyParseNumber.h"
 
 long incomingBytes;
-long length;
+long bound;
 unsigned long time_now, time_old;
 
 // pins that denote the table have reached boundary
@@ -31,7 +31,7 @@ bool readPin(uint8_t pin){
 
 }
 
-void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2){ 
+void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2, long *length){ 
     pinMode(pin1, INPUT_PULLUP);
     pinMode(pin2, INPUT_PULLUP);
 
@@ -46,11 +46,11 @@ void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2){
         otherPin = pin1;
     else if (readPin(pin2))
         otherPin = pin2;
-    long length = 0;
+    long len = 0;
     stepper->setDirection(HIGH);
     while(readPin(otherPin)){
         stepper->step(3);
-        length += 1;
+        len += 1;
     }
     
     stepper->setPosition(length/2); // set centre as 0 position.
@@ -59,6 +59,8 @@ void sweep(Stepper *stepper, uint8_t pin1, uint8_t pin2){
         if (readPin(pin1) && readPin(pin2))
             stepper->run(3);
     }
+
+    *length = len;
 }
 
 void setup() {
@@ -67,8 +69,9 @@ void setup() {
 
     // centre the table. 
     // button at bound must be LOW when pressed, HIGH otherwise.
-    sweep(&stepper1, left_pin, right_pin);
+    sweep(&stepper1, left_pin, right_pin, &bound);
     time_old = micros();
+    bound = bound/2;
 }
 
 void loop() {
@@ -81,7 +84,7 @@ void loop() {
         stepper1.moveTo(incomingBytes);
         time_old = time_now;
     }
-    if (readPin(left_pin) && readPin(right_pin))
+    if (abs(stepper1.getPosition()) < bound)
         stepper1.run(3); // caution, delay under 3 is inaccurate. 
 }
 
