@@ -7,7 +7,7 @@ unsigned long time_now, time_old;
 
 // pins that denote the table have reached boundary
 const uint8_t left_pin = 12;
-const uint8_t right_pin = 11;
+const uint8_t right_pin = 10;
 
 const int dt = 10000; // interval between sample, in microsec.
 
