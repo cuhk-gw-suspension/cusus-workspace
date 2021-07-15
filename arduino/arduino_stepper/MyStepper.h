@@ -34,7 +34,7 @@ public:
     void setDirection(bool direction);
 
     // set number of steps stepper take per sec.
-    /* void setSpeed( ); */
+    void setSpeed(unsigned int);
 
     // function to call in the arduino loop
     void run(unsigned int pulsewidth);
@@ -73,6 +73,9 @@ protected:
 
     long _max_dist_from_0;
     bool _bound_set = false;
+    
+    // time to wait between steps, in microsec.
+    unsigned int _step_interval;
 
     uint8_t _pul_pin;
     uint8_t _dir_pin;

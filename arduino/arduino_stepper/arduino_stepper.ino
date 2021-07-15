@@ -12,7 +12,7 @@ void setup() {
     // put your setup code here, to run once:
     Serial.begin(500000);
     
-    /* stepper1.setSpeed( ); // number of steps per sec. */
+    stepper1.setSpeed(50000); // number of steps per sec.
     
     // centre the table. 
     // button at bound must be LOW when pressed, HIGH otherwise.

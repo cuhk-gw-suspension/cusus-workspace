@@ -7,6 +7,8 @@ Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin){
     _currentPos = 0;
     _direction = 0;
 
+    _step_interval = 100; // us
+
     initOutputPins(_pul_pin);
     initOutputPins(_dir_pin);
 
@@ -19,7 +21,7 @@ void Stepper::sweep(uint8_t pin1, uint8_t pin2){
 
     setDirection(LOW); 
     while(readPin(pin1) && readPin(pin2)){
-        delayMicroseconds(100);
+        delayMicroseconds(_step_interval);
         step(3);
     }
     setPosition(0); // set one boundary as 0 position.
@@ -34,7 +36,7 @@ void Stepper::sweep(uint8_t pin1, uint8_t pin2){
     setDirection(HIGH);
     _max_dist_from_0 = 0;
     while(readPin(*otherPin)){
-        delayMicroseconds(100);
+        delayMicroseconds(_step_interval);
         step(3);
         _max_dist_from_0 += 1;
     }
@@ -44,7 +46,7 @@ void Stepper::sweep(uint8_t pin1, uint8_t pin2){
     moveTo(0);
     while (distanceToGo() != 0){
         if (readPin(pin1) && readPin(pin2)){
-            delayMicroseconds(100);
+            /* delayMicroseconds(_step_interval); */
             run(3);
         }
     }
@@ -66,6 +68,11 @@ void Stepper::setDirection(bool direction){
     setOutputPins(_dir_pin, _direction);
 }
 
+void Stepper::setSpeed(unsigned int speed){
+    float period = 1e6/speed;
+    _step_interval = (unsigned int)period;
+}
+
 void Stepper::run(unsigned int pulsewidth){
     if (_currentPos != _targetPos){
         if (_bound_set && abs(_currentPos) <= _max_dist_from_0)
@@ -73,6 +80,7 @@ void Stepper::run(unsigned int pulsewidth){
 
         step(pulsewidth);
         _currentPos += _direction ? 1 : -1;
+        delayMicroseconds(_step_interval);
     }
 }
 
