@@ -16,6 +16,7 @@
     #define YIELD;
 #endif
 
-long myParseInt();
+void myParseInt_(long *pos, char *number, char delimiter);
+/* long myParseInt(); */
 
 #endif

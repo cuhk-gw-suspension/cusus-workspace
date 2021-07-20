@@ -17,6 +17,9 @@
 #endif
 
 
+// read the Pin state, HIGH or LOW.
+bool readPin(uint8_t pin);
+
 class Stepper{
 public:
     //default Stepper object, 
@@ -35,12 +38,16 @@ public:
 
     // set number of steps stepper take per sec.
     void setSpeed(unsigned int);
+    
+    // set pulse width, in microseconds.
+    // default to 3 us.
+    /* void setPulseWidth(unsigned int); */
 
     // function to call in the arduino loop
-    void run(unsigned int pulsewidth);
+    void run();
 
     // move one step
-    void step(unsigned int pulsewidth);
+    void step();
 
     // return current absolute position
     long getPosition();
@@ -60,9 +67,6 @@ private:
     
     // set provide pin as HIGH or LOW
     void setOutputPins(uint8_t pin, bool state);
-
-    // read the Pin state, HIGH or LOW.
-    bool readPin(uint8_t pin);
     
 protected:
     // current position in terms of absolute position
@@ -74,8 +78,11 @@ protected:
     long _max_dist_from_0;
     bool _bound_set = false;
     
-    // time to wait between steps, in microsec.
+    // time to wait between LOW and HIGH, in microsec.
     unsigned int _step_interval;
+
+    // time to wait between HIGH and LOW, in microsec.
+    const unsigned int _pulse_width = 3;
 
     uint8_t _pul_pin;
     uint8_t _dir_pin;

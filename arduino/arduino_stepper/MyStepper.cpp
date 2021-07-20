@@ -7,7 +7,7 @@ Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin){
     _currentPos = 0;
     _direction = 0;
 
-    _step_interval = 100; // us
+    _step_interval = 10; // us
 
     initOutputPins(_pul_pin);
     initOutputPins(_dir_pin);
@@ -22,7 +22,7 @@ void Stepper::sweep(uint8_t pin1, uint8_t pin2){
     setDirection(LOW); 
     while(readPin(pin1) && readPin(pin2)){
         delayMicroseconds(_step_interval);
-        step(3);
+        step();
     }
     setPosition(0); // set one boundary as 0 position.
     delay(500);
@@ -37,17 +37,21 @@ void Stepper::sweep(uint8_t pin1, uint8_t pin2){
     _max_dist_from_0 = 0;
     while(readPin(*otherPin)){
         delayMicroseconds(_step_interval);
-        step(3);
+        step();
         _max_dist_from_0 += 1;
     }
     _max_dist_from_0 /= 2;
+
+    if (readPin(pin1))
+        otherPin = &pin1;
+    else if (readPin(pin2))
+        otherPin = &pin2;
     
     setPosition(_max_dist_from_0); // set centre as 0 position.
     moveTo(0);
     while (distanceToGo() != 0){
-        if (readPin(pin1) && readPin(pin2)){
-            /* delayMicroseconds(_step_interval); */
-            run(3);
+        if (readPin(*otherPin)){
+            run();
         }
     }
 
@@ -70,27 +74,30 @@ void Stepper::setDirection(bool direction){
 
 void Stepper::setSpeed(unsigned int speed){
     float period = 1e6/speed;
-    _step_interval = (unsigned int)period;
+    if (period - _pulse_width < 0)
+        _step_interval = 0;
+    else
+        _step_interval = (unsigned int) (period - _pulse_width);
 }
 
-void Stepper::run(unsigned int pulsewidth){
-    if (_currentPos != _targetPos){
-        if (_bound_set && abs(_currentPos) <= _max_dist_from_0)
-            return;
+/* void Stepper::setPulseWidth(unsigned int width){ */
+/*     _pulse_width = width; */
+/* } */
 
-        step(pulsewidth);
+
+void Stepper::run(){
+    if (_currentPos != _targetPos){
+        /* if (_bound_set && abs(_currentPos) <= _max_dist_from_0) */
+        /*     return; */
+        step();
         _currentPos += _direction ? 1 : -1;
-        delayMicroseconds(_step_interval);
+        /* delayMicroseconds(_step_interval); */
     }
 }
 
-void Stepper::step(unsigned int pulsewidth){
+void Stepper::step(){
     setOutputPins(2, HIGH);
-    
-    // need to replace by other delay method
-    // claims to be accurate 3 us and up
-    delayMicroseconds(pulsewidth); 
-    
+    delayMicroseconds(_pulse_width); 
     setOutputPins(2, LOW);
 }
 
@@ -153,18 +160,14 @@ void Stepper::setOutputPins(uint8_t pin, bool state){
 }
 
 
-bool Stepper::readPin(uint8_t pin){
+bool readPin(uint8_t pin){
     char sector;
-    if (pin < 8)  sector = 'D';
-    else if (pin < 14)  sector = 'B';
-
-    switch (sector)
-    {
-    case 'D':
+    if (pin < 8){
         return ((PIND & (1 << pin)) >> pin);
-    case 'B':
+    }
+    else if (pin < 14) {
         pin -= 8;
         return ((PINB & (1 << pin)) >> pin);
-    }
+    } 
 }
 

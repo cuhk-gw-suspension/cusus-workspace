@@ -1,0 +1,108 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+LSM9DS1Class	arduino/ReadAccelerometer/LSM9DS1.cpp	/^LSM9DS1Class::LSM9DS1Class(TwoWire& wire) :$/;"	f	class:LSM9DS1Class
+LSM9DS1Class	arduino/ReadAccelerometer/LSM9DS1.h	/^class LSM9DS1Class {$/;"	c
+LSM9DS1_ADDRESS	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_ADDRESS /;"	d	file:
+LSM9DS1_ADDRESS_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_ADDRESS_M /;"	d	file:
+LSM9DS1_CTRL_REG1_G	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG1_G /;"	d	file:
+LSM9DS1_CTRL_REG1_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG1_M /;"	d	file:
+LSM9DS1_CTRL_REG2_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG2_M /;"	d	file:
+LSM9DS1_CTRL_REG3_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG3_M /;"	d	file:
+LSM9DS1_CTRL_REG6_XL	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG6_XL /;"	d	file:
+LSM9DS1_CTRL_REG8	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_CTRL_REG8 /;"	d	file:
+LSM9DS1_OUT_X_G	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_OUT_X_G /;"	d	file:
+LSM9DS1_OUT_X_L_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_OUT_X_L_M /;"	d	file:
+LSM9DS1_OUT_X_XL	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_OUT_X_XL /;"	d	file:
+LSM9DS1_STATUS_REG	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_STATUS_REG /;"	d	file:
+LSM9DS1_STATUS_REG_M	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_STATUS_REG_M /;"	d	file:
+LSM9DS1_WHO_AM_I	arduino/ReadAccelerometer/LSM9DS1.cpp	/^#define LSM9DS1_WHO_AM_I /;"	d	file:
+MyParseNumber_h	arduino/arduino_stepper/MyParseNumber.h	/^    #define MyParseNumber_h$/;"	d
+MyStepper_h	arduino/arduino_stepper/MyStepper.h	/^    #define MyStepper_h$/;"	d
+Stepper	arduino/arduino_stepper/MyStepper.cpp	/^Stepper::Stepper(uint8_t pul_pin, uint8_t dir_pin){$/;"	f	class:Stepper
+Stepper	arduino/arduino_stepper/MyStepper.h	/^class Stepper{$/;"	c
+YIELD	arduino/arduino_stepper/MyParseNumber.h	/^    #define YIELD /;"	d
+YIELD	arduino/arduino_stepper/MyParseNumber.h	/^    #define YIELD;/;"	d
+YIELD	arduino/arduino_stepper/MyStepper.h	/^    #define YIELD /;"	d
+YIELD	arduino/arduino_stepper/MyStepper.h	/^    #define YIELD;/;"	d
+_LSM9DS1_H_	arduino/ReadAccelerometer/Arduino_LSM9DS1_mod.h	/^#define _LSM9DS1_H_$/;"	d
+_bound_set	arduino/arduino_stepper/MyStepper.h	/^    bool _bound_set = false;$/;"	m	class:Stepper	typeref:typename:bool
+_currentPos	arduino/arduino_stepper/MyStepper.h	/^    volatile long _currentPos;$/;"	m	class:Stepper	typeref:typename:volatile long
+_dir_pin	arduino/arduino_stepper/MyStepper.h	/^    uint8_t _dir_pin;$/;"	m	class:Stepper	typeref:typename:uint8_t
+_direction	arduino/arduino_stepper/MyStepper.h	/^    bool _direction;$/;"	m	class:Stepper	typeref:typename:bool
+_max_dist_from_0	arduino/arduino_stepper/MyStepper.h	/^    long _max_dist_from_0;$/;"	m	class:Stepper	typeref:typename:long
+_pul_pin	arduino/arduino_stepper/MyStepper.h	/^    uint8_t _pul_pin;$/;"	m	class:Stepper	typeref:typename:uint8_t
+_pulse_width	arduino/arduino_stepper/MyStepper.h	/^    unsigned int _pulse_width = 3;$/;"	m	class:Stepper	typeref:typename:unsigned int
+_step_interval	arduino/arduino_stepper/MyStepper.h	/^    unsigned int _step_interval;$/;"	m	class:Stepper	typeref:typename:unsigned int
+_targetPos	arduino/arduino_stepper/MyStepper.h	/^    volatile long _targetPos;$/;"	m	class:Stepper	typeref:typename:volatile long
+_wire	arduino/ReadAccelerometer/LSM9DS1.h	/^    TwoWire* _wire;$/;"	m	class:LSM9DS1Class	typeref:typename:TwoWire *
+accelerationAvailable	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::accelerationAvailable()$/;"	f	class:LSM9DS1Class	typeref:typename:int
+accelerationSampleRate	arduino/ReadAccelerometer/LSM9DS1.cpp	/^float LSM9DS1Class::accelerationSampleRate()$/;"	f	class:LSM9DS1Class	typeref:typename:float
+begin	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::begin(int scale)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+continuousMode	arduino/ReadAccelerometer/LSM9DS1.h	/^    bool continuousMode;$/;"	m	class:LSM9DS1Class	typeref:typename:bool
+cusus-workspace	README.md	/^# cusus-workspace$/;"	c
+distanceToGo	arduino/arduino_stepper/MyStepper.cpp	/^long Stepper::distanceToGo(){$/;"	f	class:Stepper	typeref:typename:long
+dt	arduino/python_test_script/test_stepper.py	/^dt = 1e9\/freq # in ns.$/;"	v
+end	arduino/ReadAccelerometer/LSM9DS1.cpp	/^void LSM9DS1Class::end()$/;"	f	class:LSM9DS1Class	typeref:typename:void
+export_measurements	serial_util/communication/read.py	/^def export_measurements($/;"	f
+fpath	serial_util/communication/upload_script.py	/^    fpath = os.path.join("nano_script", "ReadAccelerometer",$/;"	v
+freq	arduino/python_test_script/test_stepper.py	/^freq = 100 # Hz$/;"	v
+getPosition	arduino/arduino_stepper/MyStepper.cpp	/^long Stepper::getPosition(){$/;"	f	class:Stepper	typeref:typename:long
+get_nano_port	serial_util/communication/adaptUSBport.py	/^def get_nano_port():$/;"	f
+gyroscopeAvailable	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::gyroscopeAvailable()$/;"	f	class:LSM9DS1Class	typeref:typename:int
+gyroscopeSampleRate	arduino/ReadAccelerometer/LSM9DS1.cpp	/^float LSM9DS1Class::gyroscopeSampleRate()$/;"	f	class:LSM9DS1Class	typeref:typename:float
+i	arduino/python_test_script/test_arduino_speed.py	/^    i = 0$/;"	v
+initOutputPins	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::initOutputPins(uint8_t pin) {$/;"	f	class:Stepper	typeref:typename:void
+line	arduino/python_test_script/test_arduino_speed.py	/^        line = ser.readline()$/;"	v
+line	arduino/python_test_script/test_stepper.py	/^        line = ser.readline().decode()$/;"	v
+line	arduino/python_test_script/test_stepper.py	/^    line = ser.readline().decode()$/;"	v
+locatePinSector	arduino/arduino_stepper/MyStepper.cpp	/^char Stepper::locatePinSector(uint8_t pin){ $/;"	f	class:Stepper	typeref:typename:char
+magneticFieldAvailable	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::magneticFieldAvailable()$/;"	f	class:LSM9DS1Class	typeref:typename:int
+magneticFieldSampleRate	arduino/ReadAccelerometer/LSM9DS1.cpp	/^float LSM9DS1Class::magneticFieldSampleRate()$/;"	f	class:LSM9DS1Class	typeref:typename:float
+main	arduino/abc.cpp	/^int main(){$/;"	f	typeref:typename:int
+monitor	serial_util/communication/read.py	/^def monitor(port_path=get_nano_port(), baud=2_000_000, timeout=1):$/;"	f
+moveTo	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::moveTo(long absolute){$/;"	f	class:Stepper	typeref:typename:void
+msg	arduino/python_test_script/test_stepper.py	/^        msg = 'm' + series[i] + '\\n'$/;"	v
+myParseInt	arduino/arduino_stepper/MyParseNumber.cpp	/^long myParseInt()$/;"	f	typeref:typename:long
+new	arduino/python_test_script/test_arduino_speed.py	/^        new = time.perf_counter_ns()$/;"	v
+np	arduino/python_test_script/test_arduino_speed.py	/^import numpy as np$/;"	I
+np	arduino/python_test_script/test_stepper.py	/^import numpy as np$/;"	I
+np	serial_util/signal_convert/quan_noise.py	/^import numpy as np$/;"	I
+old	arduino/python_test_script/test_arduino_speed.py	/^        old = new$/;"	v
+old	arduino/python_test_script/test_arduino_speed.py	/^    old = time.perf_counter_ns()$/;"	v
+quantize	serial_util/signal_convert/quan_noise.py	/^def quantize(analog_signal, reference_point, LSB):$/;"	f
+readAcceleration	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readAcceleration(float& x, float& y, float& z)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+readGyroscope	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readGyroscope(float& x, float& y, float& z)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+readMagneticField	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readMagneticField(float& x, float& y, float& z)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+readPin	arduino/arduino_stepper/MyStepper.cpp	/^bool readPin(uint8_t pin){$/;"	f	typeref:typename:bool
+readRegister	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readRegister(uint8_t slaveAddress, uint8_t address)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+readRegisters	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::readRegisters(uint8_t slaveAddress, uint8_t address, uint8_t* data, size_t len/;"	f	class:LSM9DS1Class	typeref:typename:int
+run	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::run(){$/;"	f	class:Stepper	typeref:typename:void
+script_path	arduino/python_test_script/test_arduino_speed.py	/^script_path = os.path.join("nano_script", "ReadAccelerometer", "ReadAccelerometer.ino")$/;"	v
+series	arduino/python_test_script/test_stepper.py	/^series = 25600*np.sin(2*np.pi\/5*t)$/;"	v
+series	arduino/python_test_script/test_stepper.py	/^series = series.astype(int).astype(str)$/;"	v
+setContinuousMode	arduino/ReadAccelerometer/LSM9DS1.cpp	/^void LSM9DS1Class::setContinuousMode() {$/;"	f	class:LSM9DS1Class	typeref:typename:void
+setDirection	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::setDirection(bool direction){$/;"	f	class:Stepper	typeref:typename:void
+setOneShotMode	arduino/ReadAccelerometer/LSM9DS1.cpp	/^void LSM9DS1Class::setOneShotMode() {$/;"	f	class:LSM9DS1Class	typeref:typename:void
+setOutputPins	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::setOutputPins(uint8_t pin, bool state){$/;"	f	class:Stepper	typeref:typename:void
+setPosition	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::setPosition(long pos){$/;"	f	class:Stepper	typeref:typename:void
+setPulseWidth	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::setPulseWidth(unsigned int width){$/;"	f	class:Stepper	typeref:typename:void
+setSpeed	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::setSpeed(unsigned int speed){$/;"	f	class:Stepper	typeref:typename:void
+start	arduino/python_test_script/test_arduino_speed.py	/^start = time.perf_counter()$/;"	v
+state	arduino/ReadAccelerometer/LSM9DS1.h	/^    int state;$/;"	m	class:LSM9DS1Class	typeref:typename:int
+step	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::step(){$/;"	f	class:Stepper	typeref:typename:void
+sweep	arduino/arduino_stepper/MyStepper.cpp	/^void Stepper::sweep(uint8_t pin1, uint8_t pin2){$/;"	f	class:Stepper	typeref:typename:void
+t	arduino/python_test_script/test_stepper.py	/^t = np.linspace(0, 10, num=freq*10+1)$/;"	v
+temp	arduino/python_test_script/test_arduino_speed.py	/^    temp = 0$/;"	v
+time_new	arduino/python_test_script/test_stepper.py	/^            time_new = time.perf_counter_ns()$/;"	v
+time_not_passed	arduino/python_test_script/test_stepper.py	/^            time_not_passed = ((time_new - time_old) < dt)$/;"	v
+time_not_passed	arduino/python_test_script/test_stepper.py	/^        time_not_passed = True$/;"	v
+time_old	arduino/python_test_script/test_stepper.py	/^        time_old = time_new$/;"	v
+time_old	arduino/python_test_script/test_stepper.py	/^    time_old = time.perf_counter_ns()$/;"	v
+upload	serial_util/communication/upload_script.py	/^def upload(file_path, port=get_nano_port(), timeout=60):$/;"	f
+writeRegister	arduino/ReadAccelerometer/LSM9DS1.cpp	/^int LSM9DS1Class::writeRegister(uint8_t slaveAddress, uint8_t address, uint8_t value)$/;"	f	class:LSM9DS1Class	typeref:typename:int
+~LSM9DS1Class	arduino/ReadAccelerometer/LSM9DS1.cpp	/^LSM9DS1Class::~LSM9DS1Class()$/;"	f	class:LSM9DS1Class
